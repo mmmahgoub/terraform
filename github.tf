@@ -1,15 +1,26 @@
-provider "github" {
-  token = "yourtoken"
-}
-resource "github_repository" "example" {
-  name        = "example"
-  description = "My awesome codebase"
-
-  visibility = "public"
-
-  template {
-    owner                = "github"
-    repository           = "terraform-template-module"
-    include_all_branches = true
+terraform {
+  required_providers {
+    github = {
+      source = "integrations/github"
+      version = "4.3.2"
+    }
   }
 }
+
+provider "github" {
+  token = "your-github-tocken"
+}
+
+resource "github_repository" "example" {
+  name        = "terraform-repo"
+
+  visibility  = "private"
+
+}
+```
+#### Initialize and Apply:
+```sh
+terraform init
+terraform plan
+terraform apply
+```
